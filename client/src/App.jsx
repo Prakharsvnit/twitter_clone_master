@@ -7,7 +7,8 @@ import { Profile } from './Components/Profile/Profile'
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import SignupPage from "./Components/SignupPage/SignupPage";
 import ExploreTabs from "./Components/Explore/ExploreTabs";
-import {Home} from "./Components/Home/home"
+import {Home} from "./Components/Home/home";
+import {store} from "./Redux/store"
 
 function App() {
   return (
