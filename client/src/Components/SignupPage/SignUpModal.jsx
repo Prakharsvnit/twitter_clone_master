@@ -5,6 +5,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import { Input } from "@mui/material";
 // import MonthPicker from '@mui/lab/MonthPicker';
 import MonthPicker from "./MonthPicker";
+import DayPicker from "./DayPicker";
+import YearPicker from "./YearPicker";
 
 function SignUpModal({ setOpenModal }) {
   const [value, onChange] = useState(new Date());
@@ -19,7 +21,9 @@ function SignUpModal({ setOpenModal }) {
         <h3>Create your account</h3>
         <InputGroup>
           <input type="text" placeholder="Name" />
-          <input type="Number" placeholder="Number" />
+          <input type="text" placeholder="User Name" />
+          <input type="email" placeholder="Email" />
+          <input type="password" placeholder="password" />
         </InputGroup>
         <p>Use email instead</p>
         <Section>
@@ -29,7 +33,12 @@ function SignUpModal({ setOpenModal }) {
             account is for a business, a pet, or something else.
           </SpanSecond>
         </Section>
-        <MonthPicker />
+
+        <DatePicker>
+          <MonthPicker />
+          <DayPicker />
+          <YearPicker />
+        </DatePicker>
       </Container>
       <GroupButton>
         <Button>Next</Button>
@@ -109,20 +118,23 @@ const SpanSecond = styled.span`
   opacity: 0.7;
 `;
 const GroupButton = styled.div`
-  width: 100%;
-  // background-color: red;
   display: flex;
-  align-items: center;
   justify-content: center;
 `;
 const Button = styled.div`
-  width: 80%;
-  display: flext;
-  align-items: center;
+  width: 500px;
+  display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #87898c;
-  padding: 10px 20px;
+  padding: 10px 30px;
   border-radius: 100px;
   color: white;
-  font-size: 600px;
+  font-weight: bold;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const DatePicker = styled.div`
+  display: flex;
 `;
