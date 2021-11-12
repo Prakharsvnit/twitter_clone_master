@@ -130,8 +130,10 @@ function SignupPage() {
 }
 
 export default SignupPage;
+
 const Container = styled.div`
   height: 100vh;
+  width: 100vw;
   position: fixed;
   display: flex;
   opacity: ${modalController ? "0.8" : ""};
@@ -226,7 +228,8 @@ const Wrap = styled.div`
   z-index: 1;
   height: 100vh;
   width: 100vw;
-  position: relative;
+  position: absolute;
+  overflow-x: hidden;
   background-color: ${modalController ? "rgba(0, 0, 0, 0.4)" : ""};
 `;
 // const Modal = styled.div`
