@@ -1,5 +1,5 @@
 import { loadData, saveData } from "../utils/localstorage";
-import { DELETE_TOKEN, SET_CURRENT_POST, SET_CURRENT_PROFILE, SET_LOGGEDIN_USER, STORE_TOKEN } from "./actionTypes";
+import { DELETE_TOKEN, SET_LOGGEDIN_USER, STORE_TOKEN } from "./actionTypes";
 
 const data = {
     loggedIn: false,

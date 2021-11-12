@@ -40,11 +40,15 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MontherPicker() {
+export default function MontherPicker({dob,setDob}) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.useState("");
 
   const handleChange = (event) => {
+    setDob({
+      ...dob,
+      month: event.target.value
+    })
     const {
       target: { value },
     } = event;
@@ -57,11 +61,10 @@ export default function MontherPicker() {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-multiple-name-label">Month</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          multiple
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput label="Name" />}

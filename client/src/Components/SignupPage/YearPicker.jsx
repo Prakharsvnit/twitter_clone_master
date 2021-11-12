@@ -71,11 +71,17 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function DayPicker() {
+export default function DayPicker({dob,setDob}) {
   const theme = useTheme();
-  const [personName, setPersonName] = React.useState([]);
+  const [personName, setPersonName] = React.useState("");
 
   const handleChange = (event) => {
+    setDob({
+      ...dob,
+      year: event.target.value
+    })
+
+
     const {
       target: { value },
     } = event;
@@ -92,7 +98,6 @@ export default function DayPicker() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          multiple
           value={personName}
           onChange={handleChange}
           input={<OutlinedInput label="Day" />}
