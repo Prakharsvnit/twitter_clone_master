@@ -125,6 +125,29 @@ function SignupPage() {
           </Section>
         </RightSection>
       </Container>
+      <Footer>
+        <p>About</p>
+        <p>Help Center</p>
+        <p>Terms of Service</p>
+        <p>Privacy Policy</p>
+        <p>Cookie Policy</p>
+        <p>Ads info</p>
+
+        <p>Blog</p>
+
+        <p>Status</p>
+        <p>Careers</p>
+        <p>Brand Resources</p>
+        <p>Advertising</p>
+        <p>Marketing</p>
+        <p>Twitter for Business</p>
+        <p>Developers</p>
+
+        <p>Directory</p>
+
+        <p style={{ marginTop: "-20px" }}>Settings</p>
+        <p style={{ marginTop: "-20px" }}>© 2021 Twitter, Inc.</p>
+      </Footer>
     </Wrap>
   );
 }
@@ -134,8 +157,9 @@ export default SignupPage;
 const Container = styled.div`
   height: 100vh;
   width: 100vw;
-  position: fixed;
+  // position: fixed;
   display: flex;
+  flex-wrap: no-wrap;
   opacity: ${modalController ? "0.8" : ""};
   // z-index: 1;
 `;
@@ -242,3 +266,19 @@ const Wrap = styled.div`
 // `;
 // const Input = styled.div``;
 // const TopSection = styled.div``;
+const Footer = styled.div`
+  display: flex;
+  padding: 0 2rem;
+  margin-top: -20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  p {
+    padding: 5px 7px;
+    font-size: 13px;
+    color: #586875;
+    line-height: 1.8;
+    &:hover {
+      border-bottom: 1px solid black;
+    }
+  }
+`;
