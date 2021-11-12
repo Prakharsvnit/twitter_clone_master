@@ -13,6 +13,8 @@ export default function RightNav(){
         display: flex;
         align-items: center;
         margin-top: 5px;
+        /* position: fixed;
+        top: 0.2px; */
     `;
 
     const handleSearch = ()=>{
@@ -93,6 +95,14 @@ export default function RightNav(){
                 <div className={styles.showMore}>
                     <Link to="/explore">Show more</Link>
                 </div>
+            </div>
+            <div className={styles.footer}>
+                <span onClick={()=>{window.open("https://twitter.com/en/tos")}}>Terms of Service</span>
+                <span onClick={()=>{window.open("https://twitter.com/en/privacy")}}>Privacy Policy</span>
+                <span onClick={()=>{window.open("https://help.twitter.com/en/rules-and-policies/twitter-cookies")}}>Cookie Policy</span>
+                <span onClick={()=>{window.open("https://business.twitter.com/en/help/troubleshooting/how-twitter-ads-work.html?ref=web-twc-ao-gbl-adsinfo&utm_source=twc&utm_medium=web&utm_campaign=ao&utm_content=adsinfo")}}>Ads info</span>
+                <span onClick={()=>{}}>More...</span>
+                <span>© 2021 Twitter, Inc.</span>
             </div>
         </div>
     )
