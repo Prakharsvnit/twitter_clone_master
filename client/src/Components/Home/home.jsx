@@ -26,7 +26,6 @@ function Home() {
     
     const obj = useSelector((state)=>state.loggedInUser)   // calling recuder
 
-
     useEffect(() => {
         handleTweetData();
     }, [dummy])
@@ -37,8 +36,8 @@ function Home() {
             .then((data) => {
                 let xi = data.data.tweet;
                 xi = xi.reverse();
+                console.log(xi);
                 setHomeData(xi);
-                console.log("handleTweetData: get : !err:" ,data.data.tweet)
                 setLoading(false);
             })
             .catch(err => { setError(true);  console.log(err)})
@@ -181,7 +180,7 @@ function Home() {
         </div>
         <div style={{borderTop:"none",paddingBottom:"20px",marginTop:"50px"}} className="firstBorder">
             <div>
-                <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src="https:encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYIX4fdymadei7FiL-19pxFAWPLEJgQlNEww&usqp=CAU"/>
+                <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src={obj.profile_pic}/>
                 <input onChange={handleChange} onClick={()=>{document.getElementById("show").style.display = "block"}} style={{margin:"11px 0px 0px 13px",border:"none",height:"40px",fontSize:"20px"}} placeholder="What's happening?" type="text"/>
                 <div id="up" style={{display:"none"}}>
                    <img id="upload" alt="" className="mainPic"/>
@@ -201,20 +200,20 @@ function Home() {
                 <label style={{width:"35px"}} className="btn"><img alt="img" style={{width:"18.5px"}} src={img1}/></label>
                 <button onMouseOver={handleMouse} onMouseLeave={handleMouse1} onClick={handlePostTweeet} id="tweet" style={{backgroundColor:"rgb(142,205,248)"}} className="btn1">Tweet</button>
             </div>
-            {console.log(homeData.reverse())}
+            {/* {console.log(homeData.reverse())} */}
               {/* <div style={{display: open ? "block" : "none"}}> <TransitionsModal open={open} fnc={handleClose} allComment={el} id={el._id}/></div> */}
         </div>
         {
             
             homeData.reverse().map((el) => {
                 return <div key={el._id} style={{ borderTop: "none" }} className="first">
+                    {console.log("image::::",el)}
                 
                     <div>
-                        <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG4Jo7-Edr499P5EvJCghLA-_7_ISj4GRPA&usqp=CAU"/>
+                        <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src={el.userId.profile_pic}/>
                         <div className="desc">{el.userId.name}<img style={{width:"23px",marginLeft:"3px"}} src={tick} alt="" /><span style={{color:"rgb(123,136,146)",fontWeight:"400",marginLeft:"3px",fontSize:"17.1px"}}>@{el.userId.username}</span></div>
                         <div className="description">{el.title}</div>
                     </div>
-                    {console.log("image::::",el.image)}
                         {el.image!=="" || el.image!==undefined ? "" : <img className="mainPic" src={el.image} alt="image7698"/>} 
                     <div className="d-flex flex-row" style={{ marginLeft: "56px" }}>
                         
@@ -242,17 +241,19 @@ function Home() {
                     
 
                 {/* reply ui starts from here */}
-
+                    
                     <div>
                         {/* <h1>Tweets reply</h1> */}
                         {el.comment.map((el2) => {
                             return <div key={el2._id} style={{ borderTop: "none"}} >
                                     <div>
-                                        <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBG4Jo7-Edr499P5EvJCghLA-_7_ISj4GRPA&usqp=CAU"/>
+                                        <img alt="img" style={{width:"50px",height:"50px",borderRadius:"50%",float:"left"}} src={obj.profile_pic}/>
                                         <div className="desc">{el2.userName}<img style={{width:"23px",marginLeft:"3px"}} alt="" src={tick}/><span style={{color:"rgb(123,136,146)",fontWeight:"400",marginLeft:"3px",fontSize:"17.1px"}}>@{el2.userUserName}</span></div>
                                     <div style={{marginLeft:"64px"}}>  Replying to @{el.userId.username} </div>
+                                    <br />
                                         <div className="description">{el2.commentTitle}</div>
                                 </div>
+
                                 {el2.image!=="" ? "" : <img className="mainPic" src={el2.image} alt="image7698"/>} 
                                         <div style={{marginLeft:"56px"}}>
                                             <img style={{ width: "40px" }} src={chat} alt="" /><span style={{ fontSize: "12px" }}>0</span>

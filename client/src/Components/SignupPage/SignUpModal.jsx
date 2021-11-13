@@ -65,7 +65,7 @@ function SignUpModal({ setOpenModal }) {
     <MiddleModal>
       <Nav>
         <CustomClearIcon onClick={() => setOpenModal(false)} />
-        <CustomTwitter fontSize="large" />
+        <CustomTwitter style={{color:"#1A8CD8"}} fontSize="large" />
       </Nav>
       <Container>
         <h3>Create your account</h3>

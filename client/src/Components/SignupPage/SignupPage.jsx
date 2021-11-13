@@ -70,7 +70,7 @@ function SignupPage() {
           <i className="bi bi-twitter"></i>
         </LeftSection>
         <RightSection>
-          <i className="bi bi-twitter"></i>
+          <i className="bi bi-twitter" style={{color:"#1A8CD8"}}></i>
           <h1>Happening now</h1>
           <h4>Join Twitter today</h4>
           <ButtonGroup>
@@ -145,8 +145,8 @@ function SignupPage() {
 
         <p>Directory</p>
 
-        <p style={{ marginTop: "-20px" }}>Settings</p>
-        <p style={{ marginTop: "-20px" }}>© 2021 Twitter, Inc.</p>
+        <p>Settings</p>
+        <p>© 2021 Twitter, Inc.</p>
       </Footer>
     </Wrap>
   );

@@ -49,7 +49,7 @@ function SignInModal({ setOpenModalSecond }) {
     <MiddleModal>
       <Nav>
         <CustomClearIcon onClick={() => setOpenModalSecond(false)} />
-        <CustomTwitter fontSize="large" />
+        <CustomTwitter style={{color:"#1A8CD8"}} fontSize="large" />
       </Nav>
       <p>To get started, first enter your phone, email address or @username</p>
       <Container>

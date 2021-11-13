@@ -13,6 +13,7 @@ import { store } from "./Redux/store";
 import Notification from "./Components/Notification/Notification";
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import  Messages from "./Components/Messages/displayMessages";
 
 function App() {
 
@@ -53,6 +54,9 @@ function App() {
                 </Route>
                 <Route path="/lists">
                   <Lists />
+                </Route>
+                <Route path="/messages">
+                  <Messages />
                 </Route>
               </Switch>
             </div>
