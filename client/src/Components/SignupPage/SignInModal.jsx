@@ -1,12 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ClearIcon from "@mui/icons-material/Clear";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import { Input } from "@mui/material";
-// import MonthPicker from '@mui/lab/MonthPicker';
-import MonthPicker from "./MonthPicker";
+import axios from "axios";
+import { useHistory } from "react-router";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoggedInUser, storeToken } from "../../Redux/action";
 
 function SignInModal({ setOpenModalSecond }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState();
+  const loggedIn = useSelector(state => state.loggedIn);
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push("/home");
+    }
+  },[])
+  
+  const HandleChange = () => {
+
+    const loginData = {
+      email,
+      password
+    }
+      
+    const config = {
+      method: "post",
+      data: loginData,
+      url: `http://localhost:3007/login`
+    };
+    axios(config)
+        .then((data) => {
+            // console.log(data);
+            dispatch(storeToken(data.data));
+            dispatch(setLoggedInUser(data.data.user));
+            history.push("/home");
+        })
+        .catch((err) => {
+            alert(err);
+        })
+  };
+
+
   return (
     <MiddleModal>
       <Nav>
@@ -16,13 +54,40 @@ function SignInModal({ setOpenModalSecond }) {
       <p>To get started, first enter your phone, email address or @username</p>
       <Container>
         <InputGroup>
-          <input type="text" placeholder="Phone,email address or username" />
+          <input
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
         </InputGroup>
         <GroupButton>
-          <Button>
-            <span style={{ borderBottom: "2px solid black" }}>
-              Forget-password?
-            </span>
+          <Button
+            onClick={HandleChange}
+            style={{ backgroundColor: `${email && password ? "black" : ""}` }}
+          >
+            {email && password ? (
+              <div
+                style={{
+                  backgroundColor: "black",
+                  color: "white",
+                  fontWeight: "bold",
+                  fontSize: "18px",
+                }}
+              >
+                Next
+              </div>
+            ) : (
+              <span style={{ borderBottom: "2px solid black" }}>
+                Forget-password?
+              </span>
+            )}
           </Button>
         </GroupButton>
       </Container>
@@ -41,7 +106,6 @@ const MiddleModal = styled.div`
   background-color: white;
   width: 630px;
   height: 580px;
-  // background-color: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   p {
@@ -95,20 +159,9 @@ const InputGroup = styled.div`
     }
   }
 `;
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const SpanFirst = styled.span`
-  font-weight: bold;
-`;
-const SpanSecond = styled.span`
-  font-size: 14px;
-  opacity: 0.7;
-`;
+
 const GroupButton = styled.div`
   width: 100%;
-  // background-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,8 +175,9 @@ const Button = styled.div`
   border-radius: 100px;
   color: black;
   margin-bottom: 20px;
-  font-weidth: 600px;
+  font-weight: 600px;
   &:hover {
+    cursor: pointer;
     background-color: #e6e7e7;
     transition: background-color 1000ms linear;
   }

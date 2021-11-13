@@ -7,6 +7,7 @@ const upload = require('../midddleware/fileUploads')
 router.get("", async (req, res) => {
     try {
         const user = await User.find().lean().exec();
+        console.log("user:",user);
         return res.status(200).json(user);
     }
     catch (err)
@@ -14,6 +15,19 @@ router.get("", async (req, res) => {
         return res.status(404).send(err.message)
     }
 })
+
+
+router.get("/profiledata/:userId", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.userId).populate("tweets").lean().exec();
+        return res.status(200).json(user);
+    }
+    catch (err)
+    {
+        return res.status(404).send(err.message)
+    }
+})
+
 
 router.post("", async (req, res) => {
     try {
@@ -40,15 +54,15 @@ router.post("", async (req, res) => {
     }
 })
 
-router.patch("/:username",upload.single("cover_pic"), async (req, res) => {
+                // username: req.params.username,
+                // cover_pic: req.file.path.slice(85)
+
+router.patch("/:userId", async (req, res) => {
     try {
-        const userDefault = await user.find({ username: req.params.username }).lean().exec();
-        console.log("backend",userDefault);
-        const user = await User.findOneAndUpdate(
-            { username: req.params.username },
-            {cover_pic: req.file.path.slice(85)}
-        )
-        return res.status(201).send(user);
+        const userDefault = await User.findById(req.params.userId).lean().exec();
+        const user = await User.findByIdAndUpdate(req.params.userId,{ ...userDefault, ...req.body });
+        
+        return res.status(201).send("user updated");
     }
     catch (err)
     {
@@ -93,7 +107,6 @@ router.patch("/:id/unfollow", async (req, res) => {
         const user1 = await User.findByIdAndUpdate(userDefault._id, userDefault);        
 
         const newTray2 = newUser.followers.filter((el) => {
-            console.log("unfollow",el,req.params.id)
             return el !== req.params.id
         })
         newUser.followers = newTray2;

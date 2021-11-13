@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styles from './LeftNav.module.css';
 import {NavLink, useLocation} from 'react-router-dom';
-import { useSelector} from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
+import {deleteToken} from "../../Redux/action";
+import { useHistory } from "react-router";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import styled from "styled-components";
@@ -72,7 +74,9 @@ export default function LeftNav(){
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [tweet, setTweet] = React.useState("");
-    const [drop, setDrop] = React.useState(false);
+    const [drop, setDrop] = React.useState(true);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const Button = styled.button`
         background-color: ${tweet.length>0?"#1d9bf0":"rgb(142,205,248)"};
@@ -87,7 +91,15 @@ export default function LeftNav(){
     `;
 
     const Dropbox = styled.div`
-       display  : ${drop?"none":"block"}
+       display  : ${drop?"none":"block"};
+       width : 250px;
+       box-shadow: 4px 3px 8px 1px #d4d4d4;
+       background-color: white;
+       height: 134px;
+       z-index : 100;
+       position: relative;
+       box-shadow: 5px;
+       border-radius: 20px;       
     `;
 
     const handleOpen11 = ()=>{
@@ -97,6 +109,18 @@ export default function LeftNav(){
     const handleChange = (e)=>{
         setTweet(e.target.value);
     }
+
+    const handleLogout = ()=>{
+        dispatch(deleteToken());
+        history.push("/");
+    }
+
+    const handleCloseDropbox = ()=>{
+        console.log("13213");
+        setDrop(true)
+    }
+
+    
 
     return <div className={styles.leftNav}>
         <div>
@@ -116,18 +140,32 @@ export default function LeftNav(){
             <button className={styles.tweetBtn} onClick={handleOpen}>Tweet</button>
         </div>
         <Dropbox>
-                "nklk"
-            </Dropbox>
-        <div className={styles.profile}>
-            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+            <div className={styles.dropbox}>
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <img alt="" src={user.profile_pic} height="40" width="40" />
+                    <div className={styles.user}>
+                        <span>{user.name}</span>
+                        <br />
+                        <span>@{user.username}</span>
+                    </div>
+                </div>
+                <img alt="" src="/images/rightArrow.svg" height="13" width="12" />
+            </div>
+            <div className={styles.logout}>
+                <p>Add an existing account</p>
+                <p onClick={handleLogout}>Log out @{user.username}</p>
+            </div>
+        </Dropbox>
+        <div className={styles.profile} onClick={handleOpen11}>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center',}}>
                 <img alt="" src={user.profile_pic} height="40" width="40" />
                 <div className={styles.user}>
                     <span>{user.name}</span>
                     <br />
-                    <span>{user.username}</span>
+                    <span>@{user.username}</span>
                 </div>
             </div>
-            <img alt="" src="/images/logOutTab.svg" height="22" width="22" onClick={handleOpen11} />
+            <img alt="" src="/images/logOutTab.svg" height="22" width="22"  />
         </div>
         <div>
             <Modal

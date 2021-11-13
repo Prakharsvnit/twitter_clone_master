@@ -2,9 +2,12 @@ import styles from "./RightNav.module.css";
 import styled from "styled-components";
 import { useState } from "react";
 import {Link} from "react-router-dom";
+import axios from "axios";
+import {useEffect} from "react";
 
 export default function RightNav(){
     const [input, setInput] = useState(true);
+    const [follow, setFollow] = useState([]);
     const Search = styled.div`
         background-color:${input?"#eff3f4":"white"};
         border: ${input?"none":"1px solid #1d9bf0"};
@@ -23,40 +26,39 @@ export default function RightNav(){
 
     const data = [
         {
-            type:"Sport",
+            type:"Entertainment . LIVE",
+            title:"Fans wish Juhi Chawla a happy birthday Party popper",
+            tweets: "Trending with #JuhiChawla"
+        },
+        {
+            type:"Sport . Trending",
             title:"#IND vs AFG",
-            tweets: "1400 Tweets"
+            tweets: "7800 Tweets"
         },
         {
-            type:"Entertainment",
+            type:"Entertainment . Trending",
             title:"#Happy Birthday SRK",
-            tweets: "1400 Tweets"
+            tweets: "10051 Tweets"
         },
         {
-            type:"Cricket",
+            type:"Cricket . Trending",
             title:"#ViratKholi",
-            tweets: "1400 Tweets"
+            tweets: "11051 Tweets"
         }
     ]
 
-    const follow =[
-        {
-            profileImg : "/images/profile.jfif",
-            name: "Shahnawaz Malek",
-            userId : "@Shahnawaz1117"
-        },
-        {
-            profileImg : "/images/profile.jfif",
-            name: "Prakhar Tripathi",
-            userId : "@Prakhar25"
-        },
-        {
-            profileImg : "/images/profile.jfif",
-            name: "Soumya Ranjan",
-            userId : "@Soumya14"
-        }
-    ]
-
+    function allUser(){
+        axios.get("http://localhost:3007/user").then((data)=>{
+            // console.log(data.data);
+            const user = data.data.filter((e, i)=>i<3);
+            setFollow(user);
+        })
+    }
+    
+    useEffect(() => {
+        allUser();
+    },[]);
+    
     return (
 
         <div className={styles.rightNav}>
@@ -65,11 +67,13 @@ export default function RightNav(){
                 <input type="text" placeholder="Search Twitter" onClick={handleSearch} onMouseLeave={handleSearch}/>  
             </Search>
             <div className={styles.whats}>
-                <p>What’s happening</p>
+                <p>What's happening</p>
                 {data.map((e)=>(
                     <div className={styles.trends}>
                         <span>{e.type}</span>
-                        <p>{e.title}</p>
+                        <br/>
+                        <span>{e.title}</span>
+                        <br/>
                         <span>{e.tweets}</span>
                     </div>
                 ))}
@@ -82,11 +86,11 @@ export default function RightNav(){
                 {follow.map((e)=>(
                     <div className={styles.perFollow}>
                         <div className={styles.tweetsData}>
-                            <img src={e.profileImg} alt="" height="24" width="24" />
+                            <img src={e.profile_pic} alt="" height="24" width="24" />
                             <div style={{padding:"0px 12px"}}>
                                 <span>{e.name}</span>
                                 <br />
-                                <span>{e.userId}</span>
+                                <span>@{e.username}</span>
                             </div>
                         </div>
                         <button>Follow</button>

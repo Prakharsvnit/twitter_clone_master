@@ -19,9 +19,9 @@ function SignUpModal({ setOpenModal }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (loggedIn) {
-    //   history.push("/home");
-    // }
+    if (loggedIn) {
+      history.push("/home");
+    }
   },[])
 
   const handleChange = (e)=>{
@@ -108,7 +108,6 @@ const MiddleModal = styled.div`
   background-color: white;
   width: 600px;
   height: 550px;
-  // background-color: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;

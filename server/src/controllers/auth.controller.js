@@ -14,7 +14,7 @@ const signup = async (req, res) => {
         if (user) return res.status(400).send({ status: "failed", message: "This username is already registered." })
         user = await User.findOne({ email: req.body.email }).lean().exec()
         if (user) return res.status(400).send({ status: "failed", message: "This email id is already registered." })
-        user = await User.create(req.body)
+        user = await User.create(req.body);
         if (!user) return res.status(500).send({ status: "failed", message: "Something went wrong. Please try again after some time." });
         const token = newToken(user);
         res.status(201).json({ user, token });
@@ -25,12 +25,11 @@ const signup = async (req, res) => {
 
 const login = async (req, res) => {
     try {
-        let user = await User.findOne({ email: req.body.email }).exec();
+        let user = await User.findOne({ email: req.body.email }).lean().exec()
         if (!user) return res.status(400).send({ status: "failed", message: "Invalid Credentials" });
-        const match = user.checkPassword(req.body.password);
-        if (!match) return res.status(400).send({ status: "failed", message: "Invalid Credentials" });
+        if (user.password !== req.body.password) return res.status(400).send({ status: "failed", message: "Invalid Credentials" });
         const token = newToken(user);
-        return res.status(201).json({ token: token, username:user.username })
+        return res.status(201).json({ token, user })
     } catch (err) {
         return res.status(500).send({ status: "failed", message: "Oops! Something went wrong. Please try again after some time." });
     }

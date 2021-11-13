@@ -8,9 +8,23 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import SignupPage from "./Components/SignupPage/SignupPage";
 import ExploreTabs from "./Components/Explore/ExploreTabs";
 import { Home } from "./Components/Home/home";
+import Lists from './Components/Lists/Lists';
 import { store } from "./Redux/store";
 import Notification from "./Components/Notification/Notification";
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+
 function App() {
+
+  const user = useSelector(state=>state.loggedIn);
+  const history = useHistory();
+
+  if(!user){
+    history.push("/");
+  } else if(user){
+    history.push("/home");
+  }
+
   return (
     <Switch>
       <Route path="/" exact>
@@ -36,6 +50,9 @@ function App() {
                 </Route>
                 <Route path="/profile">
                   <Profile />
+                </Route>
+                <Route path="/lists">
+                  <Lists />
                 </Route>
               </Switch>
             </div>

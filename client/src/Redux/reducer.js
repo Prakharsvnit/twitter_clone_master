@@ -1,5 +1,5 @@
 import { loadData, saveData } from "../utils/localstorage";
-import { DELETE_TOKEN, SET_LOGGEDIN_USER, STORE_TOKEN } from "./actionTypes";
+import { DELETE_TOKEN, SET_LOGGEDIN_USER, STORE_TOKEN,LOADING_TWEEET,ERROR_TWEET,GET_TWEET } from "./actionTypes";
 
 const data = {
     loggedIn: false,
@@ -37,5 +37,10 @@ export const tokenReducer = (state = initState, { type, payload }) => {
             }
             saveData("twitterToken", stateObj3);
             return stateObj3;
+        // case LOADING_TWEEET:
+        //     const data123 = {
+        //         ...state,
+        //     }
+            
     }
 }

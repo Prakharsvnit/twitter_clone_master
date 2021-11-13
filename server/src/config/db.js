@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const connect = () => {
-    return mongoose.connect("mongodb+srv://cybervirus997:pluralsightU-3@cluster0.rwxtn.mongodb.net/twitterDatabase?retryWrites=true&w=majority");
+    return mongoose.connect("mongodb+srv://shahnawaz:twitter123@cluster0.qvcok.mongodb.net/twitterDatabase?retryWrites=true&w=majority");
 }
 
 module.exports = connect;

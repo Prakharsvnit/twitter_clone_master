@@ -1,49 +1,50 @@
 /* Left Navbar */
 
-.leftNav{
+.leftNav {
     position: fixed;
     height: 100%;
     width: inherit;
-    display:gridRow;
-    justify-content:space-between;
+    display: gridRow;
+    justify-content: space-between;
 }
-.logo{
+
+.logo {
     margin: 10px;
 }
-  
-.leftNav ul{ 
+
+.leftNav ul {
     width: 100%;
     list-style: none;
     padding: 0;
 }
 
-.leftNav ul li{
+.leftNav ul li {
     padding: 12px;
     cursor: pointer;
     width: fit-content;
 }
 
-.leftNav ul li:hover{
+.leftNav ul li:hover {
     background-color: rgba(15, 20, 25, 0.1);
     border-radius: 9999px;
 }
 
-.active_tag{
+.active_tag {
     font-weight: 700;
 }
 
-.leftNav ul li img{
+.leftNav ul li img {
     margin-top: -8px;
 }
 
-.leftNav ul li a{
+.leftNav ul li a {
     margin: 0px 20px;
     text-decoration: none;
     color: black;
     font-size: 20px;
 }
 
-.tweetBtn{
+.tweetBtn {
     background-color: #1d9bf0;
     font-size: 15px;
     font-weight: 700;
@@ -54,66 +55,71 @@
     border-radius: 30px;
 }
 
-.profile{
+.profile {
     cursor: pointer;
     width: 95%;
     position: absolute;
     bottom: 10px;
-    padding:10px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
-    font-size:15px;
+    font-size: 15px;
     align-items: center;
 }
 
-.profile>div>img{
+.profile>div>img {
     border-radius: 9999px;
 }
 
-.user{
+.user {
     padding: 0px 12px;
 }
-.user>span{
-    font-size:15px;
+
+.user>span {
+    font-size: 15px;
 }
 
-.user > span:first-child{
+.user>span:first-child {
     font-weight: 700;
 }
 
-.profile:hover{
+.user>span:nth-child(3) {
+    color: rgb(83, 100, 113);
+}
+
+.profile:hover {
     background-color: rgba(15, 20, 25, 0.1);
     border-radius: 30px;
 }
 
-.modaldiv1{
-    padding:12px;
+.modaldiv1 {
+    padding: 12px;
     border-bottom: 1px solid rgb(225, 229, 230);
 }
 
-.modaldiv1>img{
+.modaldiv1>img {
     padding: 10px;
     border-radius: 9999px;
 }
 
-.modaldiv1>img:hover{
+.modaldiv1>img:hover {
     cursor: pointer;
-    background-color:rgba(15,20,25,0.1);
-    
+    background-color: rgba(15, 20, 25, 0.1);
+
 }
 
-.modaldiv2{
+.modaldiv2 {
     padding: 10px 0px;
-    display:flex;
+    display: flex;
 }
 
-.modaldiv2>div:nth-child(1)>img{
+.modaldiv2>div:nth-child(1)>img {
     height: 48px;
     border-radius: 9999px;
     margin: 16px;
 }
 
-.modaldiv2>div:nth-child(2)>input{
+.modaldiv2>div:nth-child(2)>input {
     outline: none;
     border: none;
     padding: 25px 5px;
@@ -121,44 +127,68 @@
     margin-bottom: 50px;
 }
 
-.icons1{
-    width:fit-content;
+.icons1 {
+    width: fit-content;
     padding-right: 5px;
     margin-bottom: 12px;
 }
 
-.icons1:hover{
+.icons1:hover {
     background-color: rgba(29, 155, 240, 0.1);
     border-radius: 9999px;
     cursor: pointer;
 }
 
-.icons1>img{
-    height:24px;
+.icons1>img {
+    height: 24px;
     padding: 5px;
 }
 
-.icons1>span{
-    font-size:15px;
-    color:#1d9bf0;
-    font-weight:bold;
+.icons1>span {
+    font-size: 15px;
+    color: #1d9bf0;
+    font-weight: bold;
     padding-top: 15px;
 }
 
-.icons2{
+.icons2 {
     padding-top: 12px;
     border-top: 1px solid rgb(239, 243, 244);
-    display : flex;
+    display: flex;
     justify-content: space-between;
 }
 
-.icons2>div>img{
-    height:38px;
-    padding:9px;
-    cursor:pointer;
+.icons2>div>img {
+    height: 38px;
+    padding: 9px;
+    cursor: pointer;
 }
 
-.icons2>div>img:hover{
+.icons2>div>img:hover {
     background-color: rgba(29, 155, 240, 0.1);
     border-radius: 14px;
+}
+
+.dropbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    border: 1px solid rgb(239, 243, 244);
+}
+
+.logout>p {
+    font-size: 15px;
+    margin: 0;
+    padding: 5px 16px;
+}
+
+.logout>p:nth-child(2) {
+    border-end-end-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+
+.logout>p:hover {
+    background-color: rgba(15, 20, 25, 0.1);
+    cursor: pointer;
 }

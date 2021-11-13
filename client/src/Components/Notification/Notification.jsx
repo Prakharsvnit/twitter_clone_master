@@ -57,7 +57,7 @@ const All = styled.div`
     position: relative;
     &:before {
       display: flex;
-      background-color: blue;
+      background-color: #1D9BF0;
       border-radius: 100px;
       bottom: -6px;
       content: "";
@@ -82,7 +82,7 @@ const All = styled.div`
       visibility: visible;
       transform: scaleX(1);
       opacity: 1 !important;
-      color: blue;
+      color: "";
     }
   }
 `;
@@ -96,7 +96,7 @@ const Mention = styled.div`
     position: relative;
     &:before {
       display: flex;
-      background-color: blue;
+      background-color: #1D9BF0;
       border-radius: 100px;
       bottom: -6px;
       content: "";
