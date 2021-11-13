@@ -66,6 +66,10 @@
     align-items: center;
 }
 
+.profile>div>img{
+    border-radius: 9999px;
+}
+
 .user{
     padding: 0px 12px;
 }
@@ -80,4 +84,81 @@
 .profile:hover{
     background-color: rgba(15, 20, 25, 0.1);
     border-radius: 30px;
+}
+
+.modaldiv1{
+    padding:12px;
+    border-bottom: 1px solid rgb(225, 229, 230);
+}
+
+.modaldiv1>img{
+    padding: 10px;
+    border-radius: 9999px;
+}
+
+.modaldiv1>img:hover{
+    cursor: pointer;
+    background-color:rgba(15,20,25,0.1);
+    
+}
+
+.modaldiv2{
+    padding: 10px 0px;
+    display:flex;
+}
+
+.modaldiv2>div:nth-child(1)>img{
+    height: 48px;
+    border-radius: 9999px;
+    margin: 16px;
+}
+
+.modaldiv2>div:nth-child(2)>input{
+    outline: none;
+    border: none;
+    padding: 25px 5px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.icons1{
+    width:fit-content;
+    padding-right: 5px;
+    margin-bottom: 12px;
+}
+
+.icons1:hover{
+    background-color: rgba(29, 155, 240, 0.1);
+    border-radius: 9999px;
+    cursor: pointer;
+}
+
+.icons1>img{
+    height:24px;
+    padding: 5px;
+}
+
+.icons1>span{
+    font-size:15px;
+    color:#1d9bf0;
+    font-weight:bold;
+    padding-top: 15px;
+}
+
+.icons2{
+    padding-top: 12px;
+    border-top: 1px solid rgb(239, 243, 244);
+    display : flex;
+    justify-content: space-between;
+}
+
+.icons2>div>img{
+    height:38px;
+    padding:9px;
+    cursor:pointer;
+}
+
+.icons2>div>img:hover{
+    background-color: rgba(29, 155, 240, 0.1);
+    border-radius: 14px;
 }

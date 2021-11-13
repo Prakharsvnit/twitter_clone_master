@@ -1,5 +1,10 @@
+import * as React from 'react';
 import styles from './LeftNav.module.css';
 import {NavLink, useLocation} from 'react-router-dom';
+import { useSelector} from "react-redux";
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import styled from "styled-components";
 
 const navTabs = [ 
     {
@@ -46,8 +51,52 @@ const navTabs = [
     }
 ]
 
+const style = {
+    position: 'absolute',
+    top: '25%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    borderRadius: "16px",
+    maxHeight: "90vh",
+    maxWidth: "80vw",
+    minWidth: "600px"
+};
+
 export default function LeftNav(){
     const {pathname} = useLocation();
+    const user = useSelector(state=>state.loggedInUser);
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [tweet, setTweet] = React.useState("");
+    const [drop, setDrop] = React.useState(false);
+
+    const Button = styled.button`
+        background-color: ${tweet.length>0?"#1d9bf0":"rgb(142,205,248)"};
+        font-size: 16px;
+        font-weight: 600;
+        border: none;
+        color: white;
+        padding: 6px 18px;
+        border-radius: 100px;
+        margin-top: 5px;
+        margin-right: 18px;
+    `;
+
+    const Dropbox = styled.div`
+       display  : ${drop?"none":"block"}
+    `;
+
+    const handleOpen11 = ()=>{
+        setDrop(!drop)
+    }
+
+    const handleChange = (e)=>{
+        setTweet(e.target.value);
+    }
 
     return <div className={styles.leftNav}>
         <div>
@@ -64,18 +113,56 @@ export default function LeftNav(){
                     <NavLink to="#">More</NavLink>
                 </li>
             </ul>
-            <button className={styles.tweetBtn}>Tweet</button>
+            <button className={styles.tweetBtn} onClick={handleOpen}>Tweet</button>
         </div>
+        <Dropbox>
+                "nklk"
+            </Dropbox>
         <div className={styles.profile}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                <img alt="" src="/images/more.svg" height="40" width="40" />
+                <img alt="" src={user.profile_pic} height="40" width="40" />
                 <div className={styles.user}>
-                    <span>User Name</span>
+                    <span>{user.name}</span>
                     <br />
-                    <span>User ID</span>
+                    <span>{user.username}</span>
                 </div>
             </div>
-            <img alt="" src="/images/logOutTab.svg" height="22" width="22" />
+            <img alt="" src="/images/logOutTab.svg" height="22" width="22" onClick={handleOpen11} />
+        </div>
+        <div>
+            <Modal
+             open={open}
+             onClose={handleClose}
+             aria-labelledby="modal-modal-title"
+             aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <div className={styles.modaldiv1}>
+                        <img onClick={handleClose} style={{height:"36px"}} alt="" src="/images/cross.svg" />
+                    </div>
+                    <div className={styles.modaldiv2}>
+                        <div>
+                            <img alt="" src={user.profile_pic} />
+                        </div>
+                        <div style={{width: '100%'}}>
+                            <input type="text" placeholder="What's happening?" value={tweet} onChange={handleChange} />
+                            <div  className={styles.icons1}>
+                                <img alt="" src="/images/earth.svg" />
+                                <span>Everyone can reply</span>
+                            </div>
+                            <div className={styles.icons2}>
+                                <div>
+                                    <img alt="" src="/images/5.svg" />
+                                    <img alt="" src="/images/4.svg" />
+                                    <img alt="" src="/images/3.svg" />
+                                    <img alt="" src="/images/2.svg" />
+                                    <img alt="" src="/images/1.svg" />
+                                </div>
+                                <Button>Tweet</Button>
+                            </div>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     </div>
 }
