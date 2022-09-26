@@ -29,9 +29,6 @@ function App() {
   return (
     <Switch>
       <Route path="/" exact>
-        <SignupPage />
-      </Route>
-      <Route>
         <div className="container-fluid">
           <div className="row">
             <div className="col-1"></div>
